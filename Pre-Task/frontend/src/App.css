@@ -1,0 +1,79 @@
+/* App Container */
+.app-container {
+  background-color: #f8f7f2; /* Light gray background for the entire app */
+  min-height: 100vh;
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: flex-start;
+}
+
+/* Title Styling */
+.app-title {
+  color: #333;
+  margin-top: 20px;
+}
+
+/* Navigation Bar */
+.navbar {
+  background-color: #685d3cd7; /* Green background for navbar */
+  width: 100%;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for the navbar */
+}
+
+.nav-links {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  justify-content: left;
+  margin: 0;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: white;
+  margin: 0 15px;
+  font-size: 18px;
+  padding: 8px 16px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions for hover effects */
+}
+
+.nav-link:hover {
+  background-color: #45a049; /* Darker green when hovered */
+  transform: scale(1.1); /* Slightly grow the link on hover */
+}
+
+/* Link Hover Effect */
+.nav-link:active {
+  background-color: #3e8e41; /* Slightly darker when clicked */
+}
+
+/* Content Area */
+.content {
+  padding: 20px;
+  width: 90%;
+  max-width: 1200px;
+  margin-top: 30px;
+  background-color: rgb(118, 194, 118);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Shadow for content section */
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 10px 5px;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nav-link {
+    margin: 5px 0;
+  }
+}

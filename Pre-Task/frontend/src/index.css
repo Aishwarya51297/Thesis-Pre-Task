@@ -1,0 +1,73 @@
+/* Global Styling */
+.app {
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+/* Navigation Bar */
+nav {
+  margin: 20px;
+}
+
+nav a {
+  text-decoration: none;
+  margin: 0 15px;
+  font-size: 18px;
+  color: #007bff;
+}
+
+nav a:hover {
+  color: #0056b3;
+}
+
+/* Grid Styling */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+}
+
+.grid-item {
+  width: 100%;
+  cursor: pointer;
+}
+
+.highlight {
+  border: 4px solid red;
+}
+
+/* Chart Container */
+.chart-container {
+  display: flex;                /* Apply Flexbox */
+  justify-content: flex-start;  /* Align charts to the left */
+  gap: 20px;                    /* Space between the charts */
+  margin-top: 20px;
+  flex-wrap: nowrap;            /* Prevent wrapping */
+  flex-direction: row;          /* Ensure items align in a row */
+  overflow-x: auto;             /* Allow horizontal scroll if needed */
+}
+
+.chart {
+  width: 350px;                 /* Set fixed width for each chart */
+  margin: 10px;                 /* Space around each chart */
+  display: inline-block;        /* Ensure charts are treated as inline elements */
+}
+
+svg {
+  background-color: #f4f4f4;
+  border-radius: 8px;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.label {
+  fill: black;
+  font-size: 12px;
+  font-weight: bold;
+  text-anchor: middle;
+}
