@@ -17,7 +17,7 @@
 
 /* Navigation Bar */
 .navbar {
-  background-color: #685d3cd7; /* Green background for navbar */
+  background-color: #4CAF50; /* Green background for navbar */
   width: 100%;
   padding: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for the navbar */
@@ -41,10 +41,18 @@
   transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions for hover effects */
 }
 
+/*
 .nav-link:hover {
-  background-color: #45a049; /* Darker green when hovered */
-  transform: scale(1.1); /* Slightly grow the link on hover */
+  background-color: #45a049;
+  transform: scale(1.1);
 }
+*/
+
+.grid-item:hover {
+  transform: scale(1.1);
+  border-color: #007bff;
+}
+
 
 /* Link Hover Effect */
 .nav-link:active {
@@ -57,7 +65,7 @@
   width: 90%;
   max-width: 1200px;
   margin-top: 30px;
-  background-color: rgb(118, 194, 118);
+  background-color: white;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Shadow for content section */
 }

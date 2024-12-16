@@ -4,6 +4,7 @@ import './index.css';
 function Home({ filter }) {
   const [images, setImages] = useState([]);
   const [filteredImages, setFilteredImages] = useState([]);
+  const [descriptions, setDescriptions] = useState({});
 
   useEffect(() => {
     fetch('http://127.0.0.1:5000/images')
@@ -14,60 +15,72 @@ function Home({ filter }) {
       });
   }, []);
 
-  // Apply the filter
   useEffect(() => {
     if (!filter) {
-      setFilteredImages(images); // No filter applied, show all images
+      setFilteredImages(images);
       return;
     }
 
-    // Filtering based on gender, age, or orientation
     let filtered = images;
 
     if (filter.category === 'gender') {
-      if (filter.value === 'male') {
-        filtered = images.filter((img) => img.includes('male'));
-      } else if (filter.value === 'female') {
-        filtered = images.filter((img) => img.includes('female'));
-      }
+      filtered = images.filter((img) => img.filename.includes(filter.value));
     }
 
     if (filter.category === 'age') {
-      if (filter.value === 'young') {
-        filtered = images.filter((img) => img.includes('young'));
-      } else if (filter.value === 'middle age') {
-        filtered = images.filter((img) => img.includes('middle'));
-      } else if (filter.value === 'old') {
-        filtered = images.filter((img) => img.includes('old'));
-      }
+      filtered = images.filter((img) => img.filename.includes(filter.value));
     }
 
     if (filter.category === 'orientation') {
-      if (filter.value === 'camera_facing') {
-        filtered = images.filter((img) => img.includes('camera_facing'));
-      } else if (filter.value === 'away_facing') {
-        filtered = images.filter((img) => img.includes('away_facing'));
-      }
+      filtered = images.filter((img) => img.filename.includes(filter.value));
     }
 
     setFilteredImages(filtered);
   }, [filter, images]);
 
-  const handleImageClick = (e) => {
-    e.target.classList.toggle('highlight');
+  const fetchDescription = async (imageId) => {
+    try {
+      const response = await fetch(`http://127.0.0.1:5000/describe-image/${imageId}`, {
+        method: 'POST',
+      });
+      const data = await response.json();
+      setDescriptions((prev) => ({ ...prev, [imageId]: data.description }));
+    } catch (error) {
+      console.error('Error fetching description:', error);
+    }
+  };
+
+  const handleImageClick = (imageId,index) => {
+    console.log(`Image ${imageId} clicked`); // For debugging
+    
+    const imgElement = document.getElementById(`image-${index}`);
+    if (imgElement) {
+      imgElement.classList.toggle('highlight');
+    }
+
+    if (!descriptions[imageId]) {
+      fetchDescription(imageId);
+    }
   };
 
   return (
     <div>
       <div className="grid-container">
         {filteredImages.map((image, index) => (
-          <img
-            key={index}
-            src={`http://127.0.0.1:5000/images/${image}`}
-            alt={image}
-            className="grid-item"
-            onClick={handleImageClick}
-          />
+          <div key={index} className="image-item">
+            <img
+              id={`image-${index + 1}`}
+              src={`http://127.0.0.1:5000/static/images/${image}`}
+              alt={image.filename}
+              className="grid-item"
+              onClick={() => handleImageClick(image,index+1)}
+            />
+            <p>
+              {descriptions[image]
+                ? descriptions[image]
+                : 'Click to get description'}
+            </p>
+          </div>
         ))}
       </div>
     </div>

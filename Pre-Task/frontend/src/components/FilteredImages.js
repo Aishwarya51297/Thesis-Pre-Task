@@ -7,12 +7,18 @@ const FilteredImages = ({ images }) => {
 
   return (
     <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
-      {images.map(image => (
+      {images.map((image) => (
         <img
           key={image.id}
           src={`http://localhost:5000/images/${image.id}.png`} // Replace <port> with your backend port
           alt={`${image.id}`}
-          style={{ width: "150px", height: "150px", objectFit: "cover" }}
+          style={{
+            width: "150px",
+            height: "150px",
+            objectFit: "cover",
+            border: "1px solid #ccc",
+            borderRadius: "8px",
+          }}
         />
       ))}
     </div>
